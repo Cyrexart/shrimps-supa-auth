@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/layout/theme-provider";
+import { AuthProvider } from "@/components/auth/layout/authProvider";
+
+import { getUser } from "@/lib/actions/auth";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,11 +21,13 @@ export const metadata: Metadata = {
   description: "Using Next.js, Supabase, Shadcn",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const user = await getUser();
+
   return (
     <html lang="en">
       <body
@@ -34,7 +39,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <AuthProvider initialUser={user}>
+            {children}
+          </AuthProvider>
         </ThemeProvider>
       </body>
     </html >

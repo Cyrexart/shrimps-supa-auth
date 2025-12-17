@@ -6,12 +6,14 @@ import { Button } from '@/components/ui/button'
 import { useState, useEffect } from 'react'
 import { cn } from '@/lib/utils'
 import { ThemeSwitcher } from './theme-switcher'
+import { LoginButton } from '../auth/ui/login-button'
+import { SignUpButton } from '../auth/ui/sign-up-button'
 
 const menuItems = [
-  { name: 'About', href: '#link' },
-  { name: 'Solutions', href: '#link' },
-  { name: 'Guide', href: '#link' },
-  { name: 'Contacts', href: '#link' },
+  { name: 'About', href: '/' },
+  { name: 'Solutions', href: '#solutions' },
+  { name: 'Guide', href: '/guide' },
+  { name: 'Contacts', href: '#footer' },
 ]
 
 interface headerProps {
@@ -87,25 +89,12 @@ export const Header = ({
               </div>
               <div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit">
                 <ThemeSwitcher />
-                <Button
-                  asChild
-                  variant="outline"
-                  size="sm"
-                  cursor="pointer"
-                  className={cn(isScrolled && 'lg:hidden')}>
-                  <Link href="#">
-                    <span>Login</span>
-                  </Link>
-                </Button>
-                <Button
-                  asChild
-                  size="sm"
-                  cursor="pointer"
-                  className={cn(isScrolled && 'lg:hidden')}>
-                  <Link href="#">
-                    <span>Sign Up</span>
-                  </Link>
-                </Button>
+                <LoginButton
+                  className={cn(isScrolled && 'lg:hidden')}
+                />
+                <SignUpButton
+                  className={cn(isScrolled && 'lg:hidden')}
+                />
                 <Button
                   asChild
                   size="sm"

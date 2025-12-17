@@ -19,7 +19,7 @@ export function ThemeSwitcher({
   className,
   ...props
 }: ThemeSwitcherProps) {
-  const { theme, setTheme } = useTheme();
+  const { setTheme, theme } = useTheme();
   const toggleTheme = () => {
     setTheme(theme === "dark" ? "light" : "dark");
   };

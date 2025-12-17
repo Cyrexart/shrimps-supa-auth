@@ -18,5 +18,9 @@
     "lib": "@/lib",
     "hooks": "@/hooks"
   },
-  "registries": {}
+  "registries": {
+    "@hextaui": "https://hextaui.com/r/{name}.json",
+    "@elements": "https://tryelements.dev/r/{name}.json",
+    "@react-bits": "https://reactbits.dev/r/{name}.json"
+  }
 }
