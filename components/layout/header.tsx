@@ -1,16 +1,21 @@
 'use client'
-import Link from 'next/link'
-import { SupabaseLogo } from '@/components/logos/supabase'
-import { Menu, X } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+
+// ------------ Utils ------------
 import { useState, useEffect } from 'react'
 import { cn } from '@/lib/utils'
-import { ThemeSwitcher } from './theme-switcher'
-import { LoginButton } from '../auth/ui/login-button'
+import Link from 'next/link'
+
+// ------------ Components ------------
 import { SignUpButton } from '../auth/ui/sign-up-button'
+import { LoginButton } from '../auth/ui/login-button'
 import { AuthGuard } from '../auth/layout/authWrapper'
+import { ThemeSwitcher } from './theme-switcher'
+import { Button } from '@/components/ui/button'
 import { Skeleton } from '../ui/skeleton'
-import { ErrorMessage } from '../auth/ui/error'
+
+// ------------ Icons ------------
+import { Menu, X } from 'lucide-react'
+import { Logo } from '../ui/logo'
 
 const menuItems = [
   { name: 'About', href: '/' },
@@ -46,12 +51,13 @@ export const Header = ({
           isScrolled && 'bg-background/50 max-w-4xl rounded-2xl border backdrop-blur-lg lg:px-5')}>
           <div className="relative flex flex-wrap items-center justify-between gap-6 py-3 lg:gap-0 lg:py-4">
             <div className="flex w-full justify-between lg:w-auto">
-              <Link
-                href="/"
-                aria-label="home"
-                className="flex items-center space-x-2">
-                <SupabaseLogo />
-              </Link>
+              <Logo
+                variant="link"
+                link="https://supabase.com/"
+                image="/supabase-logo-wordmark--white.svg"
+                imageDark="/supabase-logo-wordmark--dark.svg"
+                alt="app logo"
+              />
 
               <button
                 onClick={() => setMenuState(!menuState)}

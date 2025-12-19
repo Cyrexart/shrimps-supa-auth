@@ -1,5 +1,6 @@
 "use server";
 
+import { cookies } from "next/headers";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
@@ -22,8 +23,32 @@ export async function signUp(data: LoginInput) {
     throw new Error(error.message);
   }
 
+  const cookieStore = await cookies();
+  cookieStore.set("pending_email", data.email, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    maxAge: 60 * 10, // 10 minutes
+    path: "/",
+    sameSite: "lax",
+  });
   revalidatePath("/", "layout");
-  redirect("/auth/sign-up-success");
+  redirect("/auth/email-confirm");
+}
+
+export async function confirmEmail(data: { email: string; token: string }) {
+  const supabase = await createClient();
+
+  const { error } = await supabase.auth.verifyOtp({ ...data, type: "email" });
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  const cookieStore = await cookies();
+  cookieStore.delete("pending_email");
+
+  revalidatePath("/", "layout");
+  redirect("/protected");
 }
 
 export async function signIn(data: LoginInput) {
@@ -63,6 +88,21 @@ export async function signInWithOAuth(provider: "google" | "github") {
   if (data.url) {
     redirect(data.url);
   }
+}
+
+export async function signInAsAnonymous() {
+  const supabase = await createClient();
+
+  const { error } = await supabase.auth.signInAnonymously({
+    options: {},
+  });
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  revalidatePath("/", "layout");
+  redirect("/protected");
 }
 
 export async function getUser(): Promise<User | null> {

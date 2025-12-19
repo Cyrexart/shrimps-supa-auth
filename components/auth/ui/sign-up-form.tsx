@@ -1,19 +1,16 @@
 "use client";
 
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+// ------------ Utils ------------
+import { signUp, signInWithOAuth, signInAsAnonymous } from "@/lib/actions/auth";
 import { signUpSchema, type SignUpInput } from "@/lib/types/validation";
-import { signUp, signInWithOAuth } from "@/lib/actions/auth";
-
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useSearchParams } from 'next/navigation'
+import { useForm } from "react-hook-form";
+import { cn } from "@/lib/utils";
+import { useState } from "react";
+import Link from "next/link";
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Alert, AlertDescription } from "@/components/ui/alert";
-import { AlertCircle, Lock, Mail } from "lucide-react";
-import { Spinner } from "@/components/ui/spinner";
-
+// ------------ Components ------------
 import {
   Form,
   FormControl,
@@ -22,12 +19,24 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle
+} from "@/components/ui/card";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Separator } from "@/components/ui/separator";
-import { cn } from "@/lib/utils";
+import { Spinner } from "@/components/ui/spinner";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+
+// ------------ Icons ------------
+import { AlertCircle, HatGlasses, Lock, Mail } from "lucide-react";
 import { GoogleLogo } from "@/components/logos/google";
 import { GithubLogo } from "@/components/logos/github";
-import Link from "next/link";
+
 
 interface signUpFormProps {
   className?: string,
@@ -70,10 +79,9 @@ export function SignUpForm({ className }: signUpFormProps) {
       </CardHeader>
       <CardContent>
         <div className="mx-auto flex flex-col gap-3 my-2" >
-
+          <Button variant="outline" cursor="pointer" onClick={() => signInAsAnonymous()}> <HatGlasses />Continue as Anonymous</Button>
           <Button variant="outline" cursor="pointer" onClick={() => signInWithOAuth("google")}><GoogleLogo /> Continue with Google</Button>
           <Button variant="outline" cursor="pointer" onClick={() => signInWithOAuth("github")}><GithubLogo /> Continue with GitHub</Button>
-
         </div>
         <div className="mt-8 relative">
           <Separator />
