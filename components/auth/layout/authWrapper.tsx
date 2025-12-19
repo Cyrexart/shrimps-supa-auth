@@ -18,7 +18,9 @@ export function AuthGuard({
 }: AuthGuardProps) {
   const { user, loading: isLoading, error: authError } = useUser();
 
-  if (authError && error) return <>{error(authError)}</>;
+  if (authError && error) {
+    throw error(authError)
+  }
   if (isLoading) return <>{loadingComponent}</>;
 
   return (

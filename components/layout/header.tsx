@@ -1,6 +1,6 @@
 'use client'
 import Link from 'next/link'
-import { Logo } from '@/components/ui/header-logo'
+import { SupabaseLogo } from '@/components/logos/supabase'
 import { Menu, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useState, useEffect } from 'react'
@@ -8,6 +8,9 @@ import { cn } from '@/lib/utils'
 import { ThemeSwitcher } from './theme-switcher'
 import { LoginButton } from '../auth/ui/login-button'
 import { SignUpButton } from '../auth/ui/sign-up-button'
+import { AuthGuard } from '../auth/layout/authWrapper'
+import { Skeleton } from '../ui/skeleton'
+import { ErrorMessage } from '../auth/ui/error'
 
 const menuItems = [
   { name: 'About', href: '/' },
@@ -47,7 +50,7 @@ export const Header = ({
                 href="/"
                 aria-label="home"
                 className="flex items-center space-x-2">
-                <Logo />
+                <SupabaseLogo />
               </Link>
 
               <button
@@ -87,20 +90,35 @@ export const Header = ({
                   ))}
                 </ul>
               </div>
+
               <div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit">
                 <ThemeSwitcher />
-                <LoginButton
-                  className={cn(isScrolled && 'lg:hidden')}
-                />
-                <SignUpButton
-                  className={cn(isScrolled && 'lg:hidden')}
+                <AuthGuard
+                  unauthenticated={<div className='flex gap-2'>
+                    <LoginButton className={cn(isScrolled && 'lg:hidden')} />
+                    <SignUpButton className={cn(isScrolled && 'lg:hidden')} />
+                  </div>}
+                  authenticated={
+                    <>
+                      <Button
+                        asChild
+                        size="sm"
+                        cursor="pointer"
+                        className={cn(isScrolled && 'lg:hidden')}>
+                        <Link href="/protected">
+                          <span>Get Started</span>
+                        </Link>
+                      </Button>
+                    </>
+                  }
+                  loading={<Skeleton />}
                 />
                 <Button
                   asChild
                   size="sm"
                   cursor="pointer"
                   className={cn(isScrolled ? 'lg:inline-flex' : 'hidden')}>
-                  <Link href="#">
+                  <Link href="/protected">
                     <span>Get Started</span>
                   </Link>
                 </Button>

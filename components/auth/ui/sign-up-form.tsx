@@ -27,6 +27,7 @@ import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 import { GoogleLogo } from "@/components/logos/google";
 import { GithubLogo } from "@/components/logos/github";
+import Link from "next/link";
 
 interface signUpFormProps {
   className?: string,
@@ -141,14 +142,22 @@ export function SignUpForm({ className }: signUpFormProps) {
                     </FormItem>
                   )}
                 />
-
               </div>
+
 
               <div className="mx-auto flex flex-col gap-3" >
                 <Button className="text-base font-semibold" type="submit" cursor="pointer" disabled={loading}>
                   {loading && <Spinner />}
                   {"Sign up"}
                 </Button>
+              </div>
+
+              <div className="text-muted-foreground text-center text-[0.775rem] space-y-1 mt-4">
+                <p>
+                  <Link className="underline" href="/auth/login">
+                    Already have an account? Login
+                  </Link>
+                </p>
               </div>
             </form>
           </Form>

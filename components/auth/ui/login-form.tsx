@@ -27,6 +27,7 @@ import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 import { GoogleLogo } from "@/components/logos/google";
 import { GithubLogo } from "@/components/logos/github";
+import Link from "next/link";
 
 interface loginFormProps {
   className?: string,
@@ -141,7 +142,6 @@ export function LoginForm({ className }: loginFormProps) {
                     </FormItem>
                   )}
                 />
-
               </div>
 
               <div className="mx-auto flex flex-col gap-3" >
@@ -150,6 +150,19 @@ export function LoginForm({ className }: loginFormProps) {
                   {"Login"}
                 </Button>
               </div>
+              <div className="text-muted-foreground text-center text-[0.775rem] space-y-1 mt-4">
+                <p>
+                  <Link className="underline" href="/auth/sign-up">
+                    Forgot your password?
+                  </Link>
+                </p>
+                <p>
+                  <Link className="underline" href="/auth/sign-up">
+                    Don`t have an account? Sign up
+                  </Link>
+                </p>
+              </div>
+
             </form>
           </Form>
         </div>

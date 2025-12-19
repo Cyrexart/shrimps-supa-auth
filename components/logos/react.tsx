@@ -9,7 +9,7 @@ interface logoProps {
   className?: string
 }
 
-export function Logo(
+export function ReactLogo(
   { className }: logoProps
 ) {
 
@@ -18,8 +18,8 @@ export function Logo(
   return (
     <Image
       className={cn(className)}
-      src={theme === "dark" ? "/supabase-logo-wordmark--dark.svg" : "/supabase-logo-wordmark--light.svg"}
-      alt="project logo"
+      src={theme === "dark" ? "/react-logo-wordmark--dark.svg" : "/react-logo-wordmark--light.svg"}
+      alt="react logo"
       width={150}
       height={150}
     />

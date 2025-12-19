@@ -1,44 +1,63 @@
 'use client'
 
-import { Header } from "@/components/layout/header";
+import { NextJsLogo } from "@/components/logos/next-js";
+import { SupabaseLogo } from "@/components/logos/supabase";
+import { TailwindcssLogo } from "@/components/logos/tailwindcss";
+import { ReactLogo } from "@/components/logos/react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { BadgeCheck, FingerprintPattern, Usb } from "lucide-react";
+import { BadgeCheck, CodeXml, FingerprintPattern, Rocket, Usb } from "lucide-react";
 import Link from "next/link";
 
 export default function Home() {
   return (
     <>
-      <Header />
-      <main className="overflow-hidden pt-24 lg:pt-48 ">
+      <main className="overflow-hidden pt-24 lg:pt-36 ">
         <div className="w-9/10 lg:max-w-4xl flex flex-wrap mx-auto justify-center text-center">
           <div className="w-full justify-between">
             <section id="hero">
-              <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-balance my-6">Production-ready Supabase Authentication</h1>
-              <p className="text-lg font-light text-balance my-4">A complete, customizable authentication system built for security, scalability, and great user experience — out of the box.</p>
+              <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-balance my-6">
+                Production-ready Supabase Authentication
+              </h1>
+              <p className="text-lg font-light text-balance my-4">
+                A complete, customizable authentication system built for security, scalability, and great user experience — out of the box.
+              </p>
 
               <div className="flex gap-4 justify-center ">
-                <Button className="text-lg" cursor="pointer" asChild>
+                <Button className="text-base" cursor="pointer" asChild>
                   <Link
                     href="#">
+                    <Rocket />
                     Get started
                   </Link>
                 </Button>
-                <Button className="text-lg" variant="outline" cursor="pointer" asChild>
+                <Button className="text-base" variant="outline" cursor="pointer" asChild>
                   <Link
                     href="#">
+                    <CodeXml />
                     View code
                   </Link>
                 </Button>
               </div>
             </section>
 
+            <section id="tools">
+              <div className="my-16 flex justify-around">
+                <NextJsLogo />
+                <SupabaseLogo />
+                <TailwindcssLogo />
+                <ReactLogo />
+              </div>
+
+            </section>
+
             <section id="solutions">
               <Separator className="w-1/4 my-12" />
 
 
-              <h6 className="m-4 text-2xl font-semibold text-balance">
+              <h6 className="m-4 text-2xl font-semibold 
+                text-balance">
                 Everything you need — out of the box
               </h6>
 
