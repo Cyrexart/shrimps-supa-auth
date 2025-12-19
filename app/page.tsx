@@ -23,25 +23,25 @@ const logos = [
   {
     link: "https://nextjs.org/",
     name: "next.js",
-    image: "/next-logo-wordmark--white.svg",
+    image: "/next-logo-wordmark--light.svg",
     imageDark: "/next-logo-wordmark--dark.svg"
   },
   {
     link: "https://supabase.com/",
     name: "supabase",
-    image: "/supabase-logo-wordmark--white.svg",
+    image: "/supabase-logo-wordmark--light.svg",
     imageDark: "/supabase-logo-wordmark--dark.svg"
   },
   {
     link: "https://tailwindcss.com/",
     name: "tailwindcss",
-    image: "/tailwindcss-logo-wordmark--white.svg",
+    image: "/tailwindcss-logo-wordmark--light.svg",
     imageDark: "/tailwindcss-logo-wordmark--dark.svg"
   },
   {
     link: "https://react.com/",
     name: "react",
-    image: "/react-logo-wordmark--white.svg",
+    image: "/react-logo-wordmark--light.svg",
     imageDark: "/react-logo-wordmark--dark.svg"
   },
 ]

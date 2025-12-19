@@ -54,7 +54,7 @@ export const Header = ({
               <Logo
                 variant="link"
                 link="https://supabase.com/"
-                image="/supabase-logo-wordmark--white.svg"
+                image="/supabase-logo-wordmark--light.svg"
                 imageDark="/supabase-logo-wordmark--dark.svg"
                 alt="app logo"
               />
