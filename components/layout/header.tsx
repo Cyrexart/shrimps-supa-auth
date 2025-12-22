@@ -16,6 +16,7 @@ import { Skeleton } from '../ui/skeleton'
 // ------------ Icons ------------
 import { Menu, X } from 'lucide-react'
 import { Logo } from '../ui/logo'
+import { LogOutButton } from '../auth/ui/logout-button'
 
 const menuItems = [
   { name: 'About', href: '/' },
@@ -97,14 +98,18 @@ export const Header = ({
                 </ul>
               </div>
 
-              <div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit">
+              <div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit items-center">
                 <ThemeSwitcher />
                 <AuthGuard
-                  unauthenticated={<div className='flex gap-2'>
-                    <LoginButton className={cn(isScrolled && 'lg:hidden')} />
-                    <SignUpButton className={cn(isScrolled && 'lg:hidden')} />
-                  </div>}
-                  authenticated={
+                  unauthenticated=
+                  {
+                    <div className='flex gap-2'>
+                      <LoginButton className={cn(isScrolled && 'lg:hidden')} />
+                      <SignUpButton className={cn(isScrolled && 'lg:hidden')} />
+                    </div>
+                  }
+                  authenticated=
+                  {
                     <>
                       <Button
                         asChild
@@ -115,6 +120,7 @@ export const Header = ({
                           <span>Get Started</span>
                         </Link>
                       </Button>
+                      <LogOutButton />
                     </>
                   }
                   loading={<Skeleton />}

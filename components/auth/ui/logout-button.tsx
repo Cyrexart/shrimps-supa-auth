@@ -2,10 +2,15 @@ import { signOut } from "@/lib/actions/auth";
 import { Button } from "@/components/ui/button";
 
 import { LogOutIcon } from "lucide-react";
+import { cn } from "@/lib/utils";
 
-export function LogOutButton() {
+interface logOutButtonProps {
+  className?: string,
+}
+
+export function LogOutButton({ className }: logOutButtonProps) {
   return (
-    <Button onClick={signOut} className="cursor-pointer">
+    <Button cursor="pointer" className={cn(className)} onClick={signOut} >
       <LogOutIcon />
     </Button>
   );

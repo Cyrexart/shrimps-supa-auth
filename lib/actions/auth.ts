@@ -5,7 +5,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 import { createClient } from "@/lib/supabase/server";
-import { User } from "@supabase/supabase-js";
+import { Provider, User } from "@supabase/supabase-js";
 
 import { type LoginInput } from "@/lib/types/validation";
 
@@ -71,7 +71,7 @@ export async function signOut() {
   redirect("/");
 }
 
-export async function signInWithOAuth(provider: "google" | "github") {
+export async function signInWithOAuth(provider: Provider) {
   const supabase = await createClient();
 
   const { data, error } = await supabase.auth.signInWithOAuth({

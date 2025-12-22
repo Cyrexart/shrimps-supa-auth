@@ -2,11 +2,10 @@
 
 // ------------ Utils ------------
 import { loginSchema, type LoginInput } from "@/lib/types/validation";
-import { signIn, signInAsAnonymous, signInWithOAuth } from "@/lib/actions/auth";
+import { socialProvidersProps } from "@/lib/settings/auth";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useSearchParams } from 'next/navigation'
+import { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 
@@ -33,19 +32,33 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
 // ------------ Icons ------------
-import { AlertCircle, HatGlasses, Lock, Mail } from "lucide-react";
-import { GoogleLogo } from "@/components/logos/google";
-import { GithubLogo } from "@/components/logos/github";
+import { AlertCircle, HatGlasses, Lock, Mail } from "lucide-react";// ------------ Social Providers ------------
 
-interface loginFormProps {
-  className?: string,
+
+const DEFAULT_SOCIAL_PROVIDERS: socialProvidersProps[] = [{ id: "google", name: "Google", icon: null }]
+
+export interface loginFormProps {
+  onSubmit?: (data: LoginInput) => void
+  onSocialLogin?: (provider: string) => void
+  onAnonymousLogin?: () => void
+  showSocialLogin?: boolean
+  showAnonymousLogin?: boolean
+  socialProviders?: socialProvidersProps[]
+  className?: string
 }
 
-export function LoginForm({ className }: loginFormProps) {
+export function LoginForm(
+  { onSubmit,
+    onSocialLogin,
+    onAnonymousLogin,
+    showSocialLogin = true,
+    showAnonymousLogin = false,
+    socialProviders = DEFAULT_SOCIAL_PROVIDERS,
+    className
+  }: loginFormProps
+) {
   const [loading, setLoading] = useState(false);
-
-  const searchParams = useSearchParams()
-  const [error, setError] = useState<string | null>(searchParams.get("error"));
+  const [error, setError] = useState<string | null>(null);
 
   const form = useForm<LoginInput>({
     resolver: zodResolver(loginSchema),
@@ -55,17 +68,19 @@ export function LoginForm({ className }: loginFormProps) {
     },
   });
 
-  const handleSubmit = async (data: LoginInput) => {
+  const handleSubmit = useCallback(async (data: LoginInput) => {
     try {
       setLoading(true);
       setError(null);
-      await signIn(data);
+      onSubmit?.(data)
     } catch (err) {
       setError(err instanceof Error ? err.message : String(err));
     } finally {
       setLoading(false);
     }
-  };
+  }, [onSubmit]
+  )
+
   return (
     <Card>
       <CardHeader>
@@ -78,18 +93,45 @@ export function LoginForm({ className }: loginFormProps) {
       </CardHeader>
       <CardContent>
         <div className="mx-auto flex flex-col gap-3 my-2" >
-          <Button variant="outline" cursor="pointer" onClick={() => signInAsAnonymous()}> <HatGlasses />Continue as Anonymous</Button>
-          <Button variant="outline" cursor="pointer" onClick={() => signInWithOAuth("google")}><GoogleLogo /> Continue with Google</Button>
-          <Button variant="outline" cursor="pointer" onClick={() => signInWithOAuth("github")}><GithubLogo /> Continue with GitHub</Button>
+          {showAnonymousLogin && (
+            <Button
+              variant="outline"
+              cursor="pointer"
+              onClick={() => onAnonymousLogin?.()}
+            >
+              <HatGlasses />
+              Continue as Anonymous
+            </Button>
+          )}
+
+          {showSocialLogin && socialProviders.map((provider) => {
+            const Icon = provider.icon;
+            return (
+              <Button
+                key={provider.id}
+                variant="outline"
+                cursor="pointer"
+                onClick={() => onSocialLogin?.(provider.id)}
+              >
+                {Icon && <Icon />}
+                Continue with {provider.name}
+              </Button>
+            );
+          })}
         </div>
-        <div className="mt-8 relative">
-          <Separator />
-          <div className="absolute inset-0 flex items-center justify-center">
-            <span className="bg-card px-2 text-muted-foreground text-xs">
-              Or continue with email
-            </span>
+
+        {(showSocialLogin || showAnonymousLogin) && (
+          <div className="mt-8 relative">
+            <Separator />
+            <div className="absolute inset-0 flex items-center justify-center">
+              <span className="bg-card px-2 text-muted-foreground text-xs">
+                Or continue with email
+                {showAnonymousLogin}
+              </span>
+            </div>
           </div>
-        </div>
+        )}
+
         <div>
           <Form {...form}>
             <form className={cn(className)} onSubmit={form.handleSubmit(handleSubmit)}>
