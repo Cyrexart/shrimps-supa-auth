@@ -5,8 +5,8 @@ import { GithubLogo } from "@/components/logos/github";
 import { Provider } from "@supabase/supabase-js";
 
 export interface socialProvidersProps {
-  id: string;
-  name: Provider;
+  id: Provider;
+  name: string;
   icon: React.ComponentType | null;
 }
 
