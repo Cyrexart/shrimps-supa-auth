@@ -2,10 +2,11 @@
 
 import { GoogleLogo } from "@/components/logos/google";
 import { GithubLogo } from "@/components/logos/github";
+import { Provider } from "@supabase/supabase-js";
 
 export interface socialProvidersProps {
   id: string;
-  name: string;
+  name: Provider;
   icon: React.ComponentType | null;
 }
 
