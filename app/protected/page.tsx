@@ -4,7 +4,6 @@
 import { useUserProfile } from "@/lib/hooks/use-user-profile";
 
 // ------------ Components ------------
-import ProfileSettings from "@/components/ui/profile";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 
 // ------------ Icons ------------
