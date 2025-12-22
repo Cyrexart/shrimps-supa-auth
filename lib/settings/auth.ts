@@ -10,7 +10,7 @@ export interface socialProvidersProps {
   icon: React.ComponentType | null;
 }
 
-export const socialProviders = [
+export const socialProviders: socialProvidersProps[] = [
   { id: "google", name: "Google", icon: GoogleLogo },
   { id: "github", name: "GitHub", icon: GithubLogo },
 ];
