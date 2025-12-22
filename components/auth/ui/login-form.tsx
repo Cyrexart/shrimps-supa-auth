@@ -33,13 +33,14 @@ import { Input } from "@/components/ui/input";
 
 // ------------ Icons ------------
 import { AlertCircle, HatGlasses, Lock, Mail } from "lucide-react";// ------------ Social Providers ------------
+import { Provider } from "@supabase/supabase-js";
 
 
 const DEFAULT_SOCIAL_PROVIDERS: socialProvidersProps[] = [{ id: "google", name: "Google", icon: null }]
 
 export interface loginFormProps {
   onSubmit?: (data: LoginInput) => void
-  onSocialLogin?: (provider: string) => void
+  onSocialLogin?: (provider: Provider) => void
   onAnonymousLogin?: () => void
   showSocialLogin?: boolean
   showAnonymousLogin?: boolean
