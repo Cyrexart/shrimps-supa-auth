@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils"
 import { Separator } from "../ui/separator"
+import { Logo } from "../ui/logo"
 
 interface footerProps {
   className?: string
@@ -11,57 +12,40 @@ export function Footer(
   }: footerProps
 ) {
   return (
-    <footer className={cn(className, "w-full border-t px-16")}>
-      <div className="grid grid-cols-2 gap-4 my-4">
-        <div>
-          <h1 className="text-xl font-bold">
-            Shrimps.com
-          </h1>
-          <p className="text-muted-foreground">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+    <footer className={cn(className, "w-full border-t-2 absolute")}>
+      <div className="py-12 px-4 mx-auto  max-w-5xl">
+        <div className="flex justify-between gap-4">
+          <Logo
+            variant="link"
+            link="https://supabase.com/"
+            alt="supabase logo"
+            image="/supabase-logo-wordmark--light.svg"
+            imageDark="/supabase-logo-wordmark--dark.svg"
+          />
+
+          <div>
+            <h2 className="font-semibold">
+              Contacts
+            </h2>
+            <p className="mt-2 text-muted-foreground text-sm">
+              shrimps.cyrex@gmail.com
+            </p>
+          </div>
+          <div>
+            <h2 className="font-semibold">
+              Last update
+            </h2>
+            <p className="mt-2 text-muted-foreground text-sm">
+              31.12.2025
+            </p>
+          </div>
+        </div>
+
+        <div className="mt-16">
+          <p className="text-muted-foreground mt-6">
+            © 2025 Shrimps.com. All rights reserved.
           </p>
         </div>
-        <div className="grid grid-cols-3 gap-4 text-center">
-          <div>
-            <h2>
-              Lorem
-            </h2>
-            <ul>
-              <li>Ipsum</li>
-              <li>Ipsum</li>
-              <li>Ipsum</li>
-              <li>Ipsum</li>
-            </ul>
-          </div>
-          <div>
-            <h2>
-              Lorem
-            </h2>
-            <ul>
-              <li>Ipsum</li>
-              <li>Ipsum</li>
-              <li>Ipsum</li>
-              <li>Ipsum</li>
-            </ul>
-          </div>
-          <div>
-            <h2>
-              Lorem
-            </h2>
-            <ul>
-              <li>Ipsum</li>
-              <li>Ipsum</li>
-              <li>Ipsum</li>
-              <li>Ipsum</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <Separator />
-      <div className="flex justify-between my-4 text-muted-foreground">
-        <p>
-          © 2024 Shadcnblocks.com. All rights reserved.
-        </p>
       </div>
     </footer>
   )

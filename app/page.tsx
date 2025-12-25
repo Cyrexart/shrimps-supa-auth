@@ -88,7 +88,7 @@ export default function Home() {
               </p>
 
               <div className="flex justify-center gap-4 ">
-                <Button className="text-base" cursor="pointer" asChild>
+                <Button className="text-base font-semibold" cursor="pointer" asChild>
                   <Link href="#">
                     <Rocket />
                     Get started
