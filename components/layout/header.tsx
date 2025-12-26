@@ -21,7 +21,7 @@ import { LogOutButton } from '../auth/ui/logout-button'
 const menuItems = [
   { name: 'About', href: '/' },
   { name: 'Solutions', href: '#solutions' },
-  { name: 'Guide', href: '/guide' },
+  { name: 'Guide', href: '/protected' },
   { name: 'Contacts', href: '#footer' },
 ]
 

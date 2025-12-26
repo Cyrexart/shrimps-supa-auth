@@ -118,7 +118,7 @@ export default function Home() {
               </div>
             </section>
 
-            <section id="solutions">
+            <section id="solutions" className="min-h-screen">
               <Separator className="my-12 w-1/4" />
 
               <div className="my-16 space-y-4">

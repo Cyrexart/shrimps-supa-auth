@@ -1,5 +1,4 @@
 import { cn } from "@/lib/utils"
-import { Separator } from "../ui/separator"
 import { Logo } from "../ui/logo"
 
 interface footerProps {
@@ -12,8 +11,8 @@ export function Footer(
   }: footerProps
 ) {
   return (
-    <footer className={cn(className, "w-full border-t-2 absolute")}>
-      <div className="py-12 px-4 mx-auto  max-w-5xl">
+    <footer id="footer" className={cn(className, "w-full border-t-2 absolute")}>
+      <div className="py-10 px-4 mx-auto  max-w-5xl">
         <div className="flex justify-between gap-4">
           <Logo
             variant="link"
