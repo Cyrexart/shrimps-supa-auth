@@ -39,12 +39,6 @@ export function Footer(
             </p>
           </div>
         </div>
-
-        <div className="mt-16">
-          <p className="text-muted-foreground mt-6">
-            © 2025 Shrimps.com. All rights reserved.
-          </p>
-        </div>
       </div>
     </footer>
   )

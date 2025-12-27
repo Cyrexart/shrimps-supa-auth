@@ -89,7 +89,7 @@ export default function Home() {
 
               <div className="flex justify-center gap-4 ">
                 <Button className="text-base font-semibold" cursor="pointer" asChild>
-                  <Link href="#">
+                  <Link href="/protected">
                     <Rocket />
                     Get started
                   </Link>
