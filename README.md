@@ -1,6 +1,6 @@
 # Supabase authentication template
 
-This is a educational [Next.js](https://nextjs.org) project that provides full Supabase Auth functionality and a ready-to-use UI
+This is a educational [Next.js](https://nextjs.org) project that provides full Supabase Auth functionality and a ready-to-use UI.
 
 ![Next.js](https://img.shields.io/badge/Next.js-black?logo=nextdotjs&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-%2338B2AC.svg?logo=tailwind-css&logoColor=white)
@@ -24,17 +24,17 @@ cd my-app
 Install all dependencies:
 
 ```bash
-pnpm install 
-# or npm install / yarn install
+npm install 
+# or pnpm install / yarn install
 ```
 
-Rename the `.env.example` file to `.env.local`, create a new project at supabase.com and your details
+Create a new project at supabase.com, rename the `.env.example` file to `.env.local`, and fill it in with your details.
 
 Run Development Server
 
 ```bash
-pnpm dev
-# or npm run dev / yarn dev 
+npm run dev
+# or pnpm dev / yarn dev 
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
