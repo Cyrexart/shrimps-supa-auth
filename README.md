@@ -10,7 +10,7 @@ This is a educational [Next.js](https://nextjs.org) project that provides full S
 
 This project is deployed on Vercel.com.
 
-Check out my [Supabase authentication template](shrimps-supa-auth.vercel.app/) before starting.
+Check out my [Supabase authentication template](https://shrimps-supa-auth.vercel.app/) before starting.
 
 ## Getting Started
 
