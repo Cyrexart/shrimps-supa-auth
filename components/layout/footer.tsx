@@ -16,10 +16,10 @@ export function Footer(
         <div className="flex justify-between gap-4">
           <Logo
             variant="link"
-            link="https://supabase.com/"
-            alt="supabase logo"
-            image="/supabase-logo-wordmark--light.svg"
-            imageDark="/supabase-logo-wordmark--dark.svg"
+            link="https://github.com/Cyrexart"
+            alt="app logo"
+            image="/shripms-logo-wordmark--light.svg"
+            imageDark="/shrimps-logo-wordmark--dark.svg"
           />
 
           <div>
@@ -35,7 +35,7 @@ export function Footer(
               Last update
             </h2>
             <p className="mt-2 text-muted-foreground text-sm">
-              31.12.2025
+              29.12.2025
             </p>
           </div>
         </div>
