@@ -87,7 +87,7 @@ export default function Home() {
                 Stop configuring and start innovating. Securely build, deploy and scale authentication with <span className="text-foreground">row-level security</span>, <span className="text-foreground">type safety </span> and <span className="text-foreground"> React-friendly </span> components.
               </p>
 
-              <div className="flex justify-center gap-4 ">
+              <div className="flex justify-center gap-4 flex-col md:flex-row ">
                 <Button className="text-base font-semibold" cursor="pointer" asChild>
                   <Link href="/protected">
                     <Rocket />
@@ -104,7 +104,7 @@ export default function Home() {
             </section>
 
             <section id="tools">
-              <div className="my-16 flex items-center justify-around">
+              <div className="my-16 flex flex-col md:flex-row gap-12 items-center justify-around">
                 {logos.map((logo) => (
                   <Logo
                     key={logo.name}
@@ -125,7 +125,7 @@ export default function Home() {
                 <h6 className="text-5xl font-bold text-balance tracking-tight">
                   Everything you need to ship fast
                 </h6>
-                <p className="text-sm font-semibold text-muted-foreground">
+                <p className="mx-auto text-sm max-w-2/3 font-semibold text-muted-foreground">
                   Production-ready authentication with all the features developers need
                 </p>
               </div>

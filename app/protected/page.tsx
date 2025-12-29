@@ -106,9 +106,9 @@ const links = [
 
 export default function Page() {
   return (
-    <main className="min-h-screen overflow-hidden lg:py-16">
+    <main className="min-h-screen overflow-hidden py-8 lg:py-16">
       <div className="border-b">
-        <div className="mx-auto w-9/10 max-w-4xl px-4 py-16">
+        <div className="mx-auto w-9/10 md:max-w-4xl px-4 py-16">
           <UserName className="mb-8 text-5xl font-bold" text="Hello, " />
           <p className="max-w-xl text-base text-balance text-muted-foreground">
             A production-ready Next.js starter with Supabase authentication, shadcn/ui components, and TypeScript. Get started in minutes.

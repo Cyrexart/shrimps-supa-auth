@@ -12,17 +12,17 @@ export function Footer(
 ) {
   return (
     <footer id="footer" className={cn(className, "w-full border-t-2 absolute")}>
-      <div className="py-10 px-4 mx-auto  max-w-5xl">
-        <div className="flex justify-between gap-4">
+      <div className="py-10 px-4 mx-auto w-9/10 max-w-5xl">
+        <div className="flex flex-col md:flex-row items-center md:justify-between gap-4">
           <Logo
             variant="link"
             link="https://github.com/Cyrexart"
             alt="app logo"
-            image="/shripms-logo-wordmark--light.svg"
+            image="/shrimps-logo-wordmark--light.svg"
             imageDark="/shrimps-logo-wordmark--dark.svg"
           />
 
-          <div>
+          <div className="text-center md:text-start">
             <h2 className="font-semibold">
               Contacts
             </h2>
@@ -30,7 +30,7 @@ export function Footer(
               shrimps.cyrex@gmail.com
             </p>
           </div>
-          <div>
+          <div className="text-center md:text-start">
             <h2 className="font-semibold">
               Last update
             </h2>
