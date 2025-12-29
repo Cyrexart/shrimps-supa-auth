@@ -5,7 +5,6 @@ import { useTheme } from "next-themes";
 
 import { cn } from "@/lib/utils"
 import Link from "next/link";
-import { he } from "zod/v4/locales";
 
 type variant = "image" | "link"
 

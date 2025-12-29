@@ -54,9 +54,9 @@ export const Header = ({
             <div className="flex w-full justify-between lg:w-auto">
               <Logo
                 variant="link"
-                link="https://supabase.com/"
-                image="/supabase-logo-wordmark--light.svg"
-                imageDark="/supabase-logo-wordmark--dark.svg"
+                link="https://github.com/Cyrexart"
+                image="/shrimps-logo-wordmark--light.svg"
+                imageDark="/shrimps-logo-wordmark--dark.svg"
                 alt="app logo"
               />
 

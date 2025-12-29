@@ -95,7 +95,7 @@ export default function Home() {
                   </Link>
                 </Button>
                 <Button className="text-base" variant="outline" cursor="pointer" asChild>
-                  <Link href="#">
+                  <Link href="https://github.com/Cyrexart/Shrimps-supa-auth">
                     <CodeXml />
                     View code
                   </Link>

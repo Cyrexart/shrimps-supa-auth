@@ -1,13 +1,13 @@
 'use client'
 
-import { Check, Copy, Palette, FileCode, Database, FileText, Rocket, Settings, Terminal } from "lucide-react"
+import { Check, Copy, Palette, FileCode, Database, FileText, Rocket, Settings, Terminal, Settings2 } from "lucide-react"
 import { Button } from "./button"
 import { Card } from "./card"
 import { cn } from "@/lib/utils"
 import { useState } from "react"
 
 type Sizes = "small" | "medium" | "big"
-export type IconName = "terminal" | "palette" | "filecode" | "file" | "database" | "rocket" | "settings"
+export type IconName = "terminal" | "palette" | "filecode" | "file" | "database" | "rocket" | "settings" | "settings2"
 
 const iconMap: Record<IconName, React.ComponentType<{ className?: string }>> = {
   terminal: Terminal,
@@ -17,6 +17,7 @@ const iconMap: Record<IconName, React.ComponentType<{ className?: string }>> = {
   database: Database,
   rocket: Rocket,
   settings: Settings,
+  settings2: Settings2,
 }
 
 interface infoCardProps {
@@ -36,7 +37,7 @@ const sizeConfig = {
     cardSpacing: "space-y-1",
     titleSize: "text-base font-mono font-semibold",
     description: "text-sm text-muted-foreground",
-    iconSize: "h-5 w-5",
+    iconSize: "h-6 w-6",
     iconContainer: "h-7 w-7"
   },
   medium: {
