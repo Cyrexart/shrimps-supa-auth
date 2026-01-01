@@ -11,7 +11,6 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 
 // ------------ Components ------------
-import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Spinner } from "@/components/ui/spinner";
 import { Button } from "@/components/ui/button";
 import { ProviderLogin } from "./provider-login";
@@ -28,9 +27,8 @@ import {
 } from "@/components/ui/card";
 
 // ------------ Icons ------------
-import { AlertCircle, Lock, Mail } from "lucide-react";
-
-const DEFAULT_SOCIAL_PROVIDERS: socialProvidersProps[] = [{ id: "google", name: "Google", icon: null }]
+import { Lock, Mail } from "lucide-react";
+import { ErrorMessage } from "@/components/custom/error";
 
 export interface loginFormProps {
   onSubmit?: (data: LoginInput) => void
@@ -46,9 +44,9 @@ export function LoginForm(
   { onSubmit,
     onSocialLogin,
     onAnonymousLogin,
-    showSocialLogin = true,
-    showAnonymousLogin = false,
-    socialProviders = DEFAULT_SOCIAL_PROVIDERS,
+    showSocialLogin,
+    showAnonymousLogin,
+    socialProviders,
     className
   }: loginFormProps
 ) {
@@ -95,57 +93,43 @@ export function LoginForm(
           socialProviders={socialProviders}
         />
 
-        <div>
-          <Form {...form}>
-            <form className={cn(className)} onSubmit={form.handleSubmit(handleSubmit)}>
-              {error && (
-                <Alert variant={"destructive"}>
-                  <AlertCircle className="h-4 w-4"></AlertCircle>
-                  <AlertDescription>{error}</AlertDescription>
-                </Alert>
-              )}
+        <Form {...form}>
+          <form className={cn(className)} onSubmit={form.handleSubmit(handleSubmit)}>
+            {error && <ErrorMessage error={error} />}
 
-              <div className="flex flex-col gap-4 py-2 my-4">
-                <AuthFormField
-                  name="email"
-                  title="Email"
-                  placeholder="primeagen@example.com"
-                  isOptional={false}
-                  Icon={Mail}
-                  loading={loading}
-                />
+            <div className="flex flex-col gap-4 py-2 my-4">
+              <AuthFormField
+                name="email"
+                title="Email"
+                placeholder="primeagen@example.com"
+                isOptional={false}
+                Icon={Mail}
+                loading={loading}
+              />
+              <AuthFormField
+                name="password"
+                title="Password"
+                placeholder="************"
+                isOptional={false}
+                Icon={Lock}
+                loading={loading}
+              />
+            </div>
 
-                <AuthFormField
-                  name="password"
-                  title="Password"
-                  placeholder="************"
-                  isOptional={false}
-                  Icon={Lock}
-                  loading={loading}
-                />
-              </div>
-
-              <div className="mx-auto flex flex-col gap-3" >
-                <Button className="text-base font-semibold" type="submit" cursor="pointer" disabled={loading}>
-                  {loading && <Spinner />}
-                  {"Login"}
-                </Button>
-              </div>
-              <div className="text-muted-foreground text-center text-[0.775rem] space-y-1 mt-4">
-                <p>
-                  <Link className="underline" href="/auth/sign-up">
-                    Forgot your password?
-                  </Link>
-                </p>
-                <p>
-                  <Link className="underline" href="/auth/sign-up">
-                    Don`t have an account? Sign up
-                  </Link>
-                </p>
-              </div>
-            </form>
-          </Form>
-        </div>
+            <Button className="text-base font-semibold w-full" type="submit" cursor="pointer" disabled={loading}>
+              {loading && <Spinner />}
+              {"Login"}
+            </Button>
+            <div className="flex flex-col text-muted-foreground text-center text-[0.775rem] space-y-1 mt-4">
+              <Link className="underline" href="/auth/sign-up">
+                Forgot your password?
+              </Link>
+              <Link className="underline" href="/auth/sign-up">
+                Don`t have an account? Sign up
+              </Link>
+            </div>
+          </form>
+        </Form>
       </CardContent>
     </Card>
   );

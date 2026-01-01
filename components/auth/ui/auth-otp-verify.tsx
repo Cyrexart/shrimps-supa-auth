@@ -4,6 +4,7 @@ import { confirmEmail } from "@/lib/actions/auth";
 import { REGEXP_ONLY_DIGITS } from "input-otp"
 import { useState } from "react";
 
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import {
   Card,
   CardContent,
@@ -21,7 +22,6 @@ import {
   InputOTPGroup,
   InputOTPSlot,
 } from "@/components/ui/input-otp";
-import { Alert, AlertDescription } from "./alert";
 
 import { AlertCircle } from "lucide-react";
 

@@ -1,8 +1,8 @@
 'use client'
 
 import { Check, Copy, Palette, FileCode, Database, FileText, Rocket, Settings, Terminal, Settings2 } from "lucide-react"
-import { Button } from "./button"
-import { Card } from "./card"
+import { Button } from "@/components/ui/button"
+import { Card } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
 import { useState } from "react"
 

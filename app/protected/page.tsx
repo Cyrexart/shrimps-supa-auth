@@ -1,12 +1,13 @@
 // ------------ Utils ------------
-import { IconName } from "@/components/ui/info-card";
+import Link from "next/link";
+
 // ------------ Components ------------
 
-import { UserName } from "@/components/ui/user-name";
-import { InfoCard } from "@/components/ui/info-card";
+import { UserName } from "@/components/custom/user-name";
+import { IconName, InfoCard } from "@/components/custom/info-card";
+
 // ------------ Icons ------------
 import { ExternalLink, Layers, Terminal } from "lucide-react";
-import Link from "next/link";
 
 const steps = [
   {

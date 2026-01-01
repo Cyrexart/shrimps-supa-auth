@@ -11,7 +11,7 @@ interface logOutButtonProps {
 export function LogOutButton({ className }: logOutButtonProps) {
   return (
     <Button cursor="pointer" className={cn(className)} onClick={signOut} >
-      <LogOutIcon />
+      <LogOutIcon size={4} />
     </Button>
   );
 }

@@ -4,10 +4,10 @@
 import Link from "next/link";
 
 // ------------ Components ------------
-import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
-import { Logo } from "@/components/ui/logo";
+import { Logo } from "@/components/custom/logo";
 
 // ------------ Icons ------------
 import {

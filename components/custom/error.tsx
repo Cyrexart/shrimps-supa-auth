@@ -8,9 +8,10 @@ interface errorMessageProps {
 }
 
 export function ErrorMessage({ className, error }: errorMessageProps) {
-  <Alert variant={"destructive"} className={cn(className)}>
-    <AlertCircle className="h-4 w-4"></AlertCircle>
-    <AlertDescription>{error}</AlertDescription>
-  </Alert>
-
+  return (
+    <Alert variant={"destructive"} className={cn(className)}>
+      <AlertCircle className="h-4 w-4"></AlertCircle>
+      <AlertDescription>{error}</AlertDescription>
+    </Alert>
+  )
 }

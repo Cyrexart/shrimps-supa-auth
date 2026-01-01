@@ -7,16 +7,15 @@ import Link from 'next/link'
 
 // ------------ Components ------------
 import { SignUpButton } from '../auth/ui/sign-up-button'
-import { LoginButton } from '../auth/ui/login-button'
+import { LogOutButton } from '../auth/ui/logout-button'
 import { AuthGuard } from '../auth/layout/authWrapper'
-import { ThemeSwitcher } from './theme-switcher'
+import { LoginButton } from '../auth/ui/login-button'
 import { Button } from '@/components/ui/button'
 import { Skeleton } from '../ui/skeleton'
 
 // ------------ Icons ------------
 import { Menu, X } from 'lucide-react'
-import { Logo } from '../ui/logo'
-import { LogOutButton } from '../auth/ui/logout-button'
+import { Logo } from '@/components/custom/logo'
 
 const menuItems = [
   { name: 'About', href: '/' },
@@ -99,7 +98,16 @@ export const Header = ({
               </div>
 
               <div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit items-center">
-                <ThemeSwitcher />
+                <Button
+                  asChild
+                  size="sm"
+                  cursor="pointer"
+                  className={cn(isScrolled ? 'lg:inline-flex' : 'hidden')}>
+                  <Link href="/protected">
+                    <span>Get Started</span>
+                  </Link>
+                </Button>
+
                 <AuthGuard
                   unauthenticated=
                   {
@@ -125,15 +133,6 @@ export const Header = ({
                   }
                   loading={<Skeleton />}
                 />
-                <Button
-                  asChild
-                  size="sm"
-                  cursor="pointer"
-                  className={cn(isScrolled ? 'lg:inline-flex' : 'hidden')}>
-                  <Link href="/protected">
-                    <span>Get Started</span>
-                  </Link>
-                </Button>
               </div>
             </div>
           </div>
