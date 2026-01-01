@@ -1,4 +1,4 @@
-import EmailConfirm from "@/components/ui/auth-otp-verify";
+import EmailConfirm from "@/components/auth/ui/auth-otp-verify";
 import { cookies } from "next/headers";
 
 export default async function Page() {
