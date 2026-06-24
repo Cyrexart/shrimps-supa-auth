@@ -9,13 +9,14 @@ import { Provider, User } from "@supabase/supabase-js";
 
 import { type LoginInput } from "@/lib/types/validation";
 
-export async function signUp(data: LoginInput) {
+export async function signUp(data: LoginInput, captchaToken: string) {
   const supabase = await createClient();
 
   const { error } = await supabase.auth.signUp({
     ...data,
     options: {
       emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/protected`,
+      captchaToken,
     },
   });
 
@@ -51,10 +52,15 @@ export async function confirmEmail(data: { email: string; token: string }) {
   redirect("/protected");
 }
 
-export async function signIn(data: LoginInput) {
+export async function signIn(data: LoginInput, captchaToken: string) {
   const supabase = await createClient();
 
-  const { error } = await supabase.auth.signInWithPassword(data);
+  const { error } = await supabase.auth.signInWithPassword({
+    ...data,
+    options: {
+      captchaToken,
+    },
+  });
 
   if (error) {
     throw new Error(error.message);
@@ -90,11 +96,11 @@ export async function signInWithOAuth(provider: Provider) {
   }
 }
 
-export async function signInAsAnonymous() {
+export async function signInAsAnonymous(captchaToken: string) {
   const supabase = await createClient();
 
   const { error } = await supabase.auth.signInAnonymously({
-    options: {},
+    options: { captchaToken },
   });
 
   if (error) {
