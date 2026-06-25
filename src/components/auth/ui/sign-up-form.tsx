@@ -71,10 +71,11 @@ export function SignUpForm({
     defaultValues: {
       email: "",
       password: "",
+      confirm: ""
     },
   });
 
-  const handleSubmit = useCallback(async (data: SignUpInput) => {
+  const handleSubmit = useCallback((data: SignUpInput) => {
     if (!captchaToken) {
       setError("Please complete captcha protection verification.");
       return;
@@ -83,7 +84,7 @@ export function SignUpForm({
     try {
       setLoading(true);
       setError(null);
-      await onSubmit?.(data, captchaToken);
+      onSubmit?.(data, captchaToken);
     } catch (err) {
       setError(err instanceof Error ? err.message : String(err));
     } finally {
@@ -139,8 +140,8 @@ export function SignUpForm({
               <AuthFormField
                 name="email"
                 title="Email"
+                type="email"
                 placeholder="primeagen@example.com"
-                isOptional={false}
                 Icon={Mail}
                 loading={loading}
               />
@@ -148,7 +149,15 @@ export function SignUpForm({
                 name="password"
                 title="Password"
                 placeholder="************"
-                isOptional={false}
+                hidden
+                Icon={Lock}
+                loading={loading}
+              />
+              <AuthFormField
+                name="confirm"
+                title="Repeat your password"
+                placeholder="************"
+                hidden
                 Icon={Lock}
                 loading={loading}
               />
