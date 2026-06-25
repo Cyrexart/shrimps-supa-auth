@@ -3,6 +3,31 @@ import { cn } from "@/lib/utils"
 
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import { useState } from "react"
+import { Button } from "@/components/ui/button"
+import { Eye } from "lucide-react"
+
+
+interface ShowPasswordButtonProps {
+  onClick: () => void
+  className?: string
+}
+
+function ShowPasswordButton({ onClick, className }: ShowPasswordButtonProps) {
+  return (
+    <Button
+      onClick={(e) => {
+        e.preventDefault();
+        onClick()
+      }}
+      variant="ghost"
+      size="icon"
+      className={cn("", className)}
+    >
+      <Eye />
+    </Button>
+  )
+}
 
 interface authFormFieldProps {
   form?: UseFormReturn
@@ -11,7 +36,9 @@ interface authFormFieldProps {
   placeholder?: string
   isOptional?: boolean
   Icon?: React.ElementType
+  type?: string
   loading?: boolean
+  hidden?: boolean
   className?: string
 }
 
@@ -23,10 +50,14 @@ export function AuthFormField(
     placeholder,
     isOptional = false,
     Icon,
+    type,
     loading = false,
+    hidden = false,
     className,
   }: authFormFieldProps
 ) {
+  const [isShowing, setIsShowing] = useState(false)
+
   return (
     <FormField
       control={form?.control}
@@ -47,12 +78,18 @@ export function AuthFormField(
                 {...field}
                 placeholder={placeholder}
                 disabled={loading}
-                className={`peer block w-full rounded-md border py-2.25 ${Icon && 'pl-10'} text-sm`}
+                type={!isShowing && hidden ? "password" : type ? type : "text"}
+                className={`peer block w-full rounded-md border py-2.25 ${Icon && 'pl-10'} ${hidden && 'pr-10'} text-sm`}
               />
               {Icon && (
                 <Icon className="pointer-events-none absolute left-3 top-1/2 h-4.5 w-4.5 -translate-y-1/2" />
-              )
-              }
+              )}
+              {hidden && (
+                <ShowPasswordButton
+                  onClick={() => setIsShowing(!isShowing)}
+                  className="absolute right-3 top-1/2 h-4.5 w-4.5 -translate-y-1/2"
+                />
+              )}
             </div>
           </FormControl>
           <FormMessage />
