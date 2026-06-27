@@ -6,6 +6,18 @@ This is a educational [Next.js](https://nextjs.org) project that provides full S
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-%2338B2AC.svg?logo=tailwind-css&logoColor=white)
 ![Supabase](https://img.shields.io/badge/Supabase-white?logo=supabase&logoColor=green-darkgreen)
 
+
+<img width="1376" height="784" alt="image" src="https://github.com/user-attachments/assets/eb953ac2-b960-42d6-bd16-7985a2e96eb0" />
+
+
+## Learned tools
+
++ [Supabase](https://supabase.com/) storage and auth
++ [Zod](https://zod.dev/) type validation
++ Scalable component architecture
++ Auth providers(Google, Github)
++ [Turnstile](https://www.cloudflare.com/products/turnstile/) (captcha)
+
 ## Demo
 
 This project is deployed on Vercel.com.
@@ -24,8 +36,8 @@ cd my-app
 Install all dependencies:
 
 ```bash
-npm install 
-# or pnpm install / yarn install
+pnpm install 
+# or npm install / yarn install
 ```
 
 Create a new project at supabase.com, rename the `.env.example` file to `.env.local`, and fill it in with your details.
@@ -33,8 +45,8 @@ Create a new project at supabase.com, rename the `.env.example` file to `.env.lo
 Run Development Server
 
 ```bash
-npm run dev
-# or pnpm dev / yarn dev 
+pnpm dev
+# or npm run dev / yarn dev 
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
