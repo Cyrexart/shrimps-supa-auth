@@ -5,9 +5,11 @@ import {
   createContext,
   useContext,
   ReactNode,
+  useMemo,
 } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { type User } from "@supabase/supabase-js";
+import { useRouter } from "next/navigation";
 
 interface AuthContextValue {
   user: User | null;
@@ -17,13 +19,11 @@ interface AuthContextValue {
 
 const AuthContext = createContext<AuthContextValue>({
   user: null,
-  loading: true,
+  loading: false,
   error: null,
 });
 
 export const useUser = () => useContext(AuthContext);
-
-const supabase = createClient();
 
 export function AuthProvider({
   children,
@@ -32,25 +32,39 @@ export function AuthProvider({
   children: ReactNode;
   initialUser: User | null;
 }) {
+  const [supabase] = useState(() => createClient());
+  const router = useRouter()
+
   const [user, setUser] = useState<User | null>(initialUser);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<Error | null>(null);
+
+  const [prevInitialUserID, setPrevInitialUserID] = useState<string | undefined>(initialUser?.id)
+
+  if (initialUser?.id !== prevInitialUserID) {
+    setUser(initialUser);
+    setPrevInitialUserID(initialUser?.id)
+  }
+
 
   useEffect(() => {
     const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange((event, session) => {
+    } = supabase.auth.onAuthStateChange((_event, session) => {
       setUser(session?.user || null);
       setLoading(false);
       setError(null);
+      router.refresh();
     });
 
     return () => subscription.unsubscribe();
-  }, [initialUser]);
+  }, [supabase.auth, router]);
 
   return (
-    <AuthContext.Provider value={{ user, loading, error }}>
+    <AuthContext.Provider
+      value={useMemo(() => ({ user, loading, error }), [user, loading, error])}
+    >
       {children}
-    </AuthContext.Provider>
+    </AuthContext.Provider >
   );
 }

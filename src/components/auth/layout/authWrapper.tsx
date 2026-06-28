@@ -18,14 +18,10 @@ export function AuthGuard({
 }: AuthGuardProps) {
   const { user, loading: isLoading, error: authError } = useUser();
 
-  if (authError && error) {
-    throw error(authError)
-  }
-  if (isLoading) return <>{loadingComponent}</>;
+  if (authError && error)
+    return error(authError)
 
-  return (
-    <>
-      {user ? <>{authenticatedComponent}</> : <>{unauthenticatedComponent}</>}
-    </>
-  );
+  if (isLoading) return loadingComponent
+
+  return user ? authenticatedComponent : unauthenticatedComponent
 }
